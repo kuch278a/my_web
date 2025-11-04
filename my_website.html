@@ -109,3 +109,83 @@
           <div style="color:var(--muted); font-size:13px">Full Stack, AI, Graphics Designer & Engineer</div>
         </div>
       </aside>
+    </section>
+
+    <!-- About -->
+    <section id="about" class="card">
+      <h2>About Me</h2>
+      <p style="color:var(--muted)">I’m a product-minded engineer passionate about performance, accessibility, and delightful interactions. I collaborate with teams to deliver polished, maintainable frontends and beautiful designs.</p>
+      <ul style="color:var(--muted)">
+        <li>Design systems & pattern libraries</li>
+        <li>Performance optimization & accessibility audits</li>
+        <li>Mentoring & code reviews</li>
+      </ul>
+    </section>
+
+    <!-- Projects / Recent Work -->
+    <section id="projects" class="card">
+      <h2>Recent Work & Projects</h2>
+      <div class="projects">
+        <div class="project"><h3>Project Alpha</h3><p>Interactive design system.</p><div style="font-size:12px;color:var(--muted)">React</div></div>
+        <div class="project"><h3>Landing One</h3><p>Marketing site with animations.</p><div style="font-size:12px;color:var(--muted)">HTML/CSS</div></div>
+        <div class="project"><h3>Data Dash</h3><p>Dashboard & charts.</p><div style="font-size:12px;color:var(--muted)">Python</div></div>
+        <div class="project"><h3>Project Omega</h3><p>Responsive SaaS marketing site.</p><div style="font-size:12px;color:var(--muted)">Next.js</div></div>
+        <div class="project"><h3>Open Source UI Kit</h3><p>Accessible component library.</p><div style="font-size:12px;color:var(--muted)">React</div></div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="card">
+      <h2>Contact Me</h2>
+      <div class="contact">
+        <form onsubmit="handleForm(event)">
+          <label for="name">Name</label>
+          <input id="name" name="name" placeholder="Your name" required/>
+          <label for="email">Email</label>
+          <input id="email" name="email" type="email" placeholder="you@example.com" required/>
+          <label for="message">Message</label>
+          <textarea id="message" name="message" rows="6" placeholder="Tell me about your project" required></textarea>
+          <div style="margin-top:10px"><button type="submit">Send message</button></div>
+          <div id="notice" style="margin-top:8px;color:var(--muted);font-size:13px"></div>
+        </form>
+        <aside style="padding-left:12px;border-left:1px solid rgba(255,255,255,0.05);">
+          <h3>Quick Links</h3>
+          <p style="color:var(--muted)">Email: <a href="mailto:birukesayas91@gmail.com">birukesayas91@gmail.com</a></p>
+          <p style="color:var(--muted)">Resume: <a href="#">Download</a></p>
+          <p style="color:var(--muted)">Location: Remote / Addis Ababa</p>
+        </aside>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="card">
+      Built with ❤️ — <span id="year"></span>
+    </footer>
+  </div>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    function handleForm(e){
+      e.preventDefault();
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const msg = document.getElementById('message').value.trim();
+      const notice = document.getElementById('notice');
+      notice.textContent = 'Preparing message...';
+      const subject = encodeURIComponent('Website contact from ' + name);
+      const body = encodeURIComponent(msg + '\n\n— ' + name + ' (' + email + ')');
+      // Uncomment for mailto:
+      // window.location.href = `mailto:birukesayas91@gmail.com?subject=${subject}&body=${body}`;
+      setTimeout(()=>{notice.textContent = 'Message ready — replace with API call or enable mailto.'},700);
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      a.addEventListener('click', (e)=>{
+        const tgt = a.getAttribute('href');
+        if(tgt.length>1){ e.preventDefault(); document.querySelector(tgt).scrollIntoView({behavior:'smooth',block:'start'});}
+      });
+    });
+  </script>
+</body>
+</html>
