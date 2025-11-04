@@ -8,10 +8,10 @@
   <link rel="icon" href="data:;base64,iVBORw0KGgo=" />
   <style>
     :root {
-      --bg:#0d1117; /* deep navy/black */
+      --bg:#0d1117;
       --card:#161b27;
       --muted:#8c9ba8;
-      --accent:#1f7a8c; /* masculine teal */
+      --accent:#1f7a8c;
       --accent-hover:#43b2c8;
       --glass: rgba(255,255,255,0.05);
       --radius:16px;
@@ -19,76 +19,58 @@
       color-scheme: dark;
       font-family: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
     }
+    *{box-sizing:border-box;}
+    html,body{height:100%; margin:0; padding:48px 20px; display:flex; justify-content:center; background:linear-gradient(180deg,#080a12 0%, var(--bg) 100%); color:#e6eef8; line-height:1.5;}
+    body{-webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;}
+    .wrap{width:100%; max-width:var(--container);}
+    header{display:flex; align-items:center; justify-content:space-between; margin-bottom:36px; backdrop-filter: blur(10px);}
+    .brand{display:flex; gap:12px; align-items:center;}
+    .logo{width:50px; height:50px; border-radius:14px; background:linear-gradient(135deg,var(--accent),#0ea5e9); display:flex; align-items:center; justify-content:center; font-weight:700; color:#fff; box-shadow:0 6px 20px rgba(0,0,0,0.7); font-size:20px; transition: transform 0.3s;}
+    .logo:hover{transform: rotate(10deg) scale(1.1);}
+    nav{display:flex; gap:20px; align-items:center;}
+    nav a{color:var(--muted); text-decoration:none; font-weight:600; transition: color 0.3s;}
+    nav a:hover{color:var(--accent);}
+    .cta{background: linear-gradient(90deg,var(--accent),#0ea5e9); color:#fff; padding:10px 16px; border-radius:14px; font-weight:700; transition: all 0.3s;}
+    .cta:hover{background: var(--accent-hover); transform: scale(1.05);}
+    section{margin-bottom:36px;}
+    .card{background:var(--card); padding:28px; border-radius:var(--radius); box-shadow:0 12px 36px rgba(0,0,0,0.5); border:1px solid rgba(255,255,255,0.02); backdrop-filter: blur(8px); transition: transform 0.3s;}
+    .card:hover{transform: translateY(-5px);}
+    h1,h2,h3{margin:0;}
+    h1{font-size:36px; line-height:1.2;}
+    h2{font-size:28px; margin-bottom:16px;}
+    h3{font-size:18px;}
+    p{margin:6px 0 12px;}
+    .skills{display:flex; flex-wrap:wrap; gap:10px; margin-top:12px;}
+    .chip{background: var(--glass); padding:8px 12px; border-radius:999px; color:var(--muted); font-weight:600; transition: all 0.3s;}
+    .chip:hover{background: var(--accent-hover); color:#fff;}
+    .hero{display:grid; grid-template-columns:1fr 400px; gap:32px; align-items:center;}
+    .profile{display:flex; flex-direction:column; gap:16px; align-items:center;}
+    .avatar{width:180px; height:180px; border-radius:20px; overflow:hidden; background:var(--card); display:flex; align-items:center; justify-content:center; border:2px solid var(--accent); animation: float 4s ease-in-out infinite;}
+    .avatar img{width:100%; height:100%; object-fit:cover; display:block; transition: transform 0.4s;}
+    .avatar:hover img{transform: scale(1.1);}
+    .stats{display:flex; gap:16px;}
+    .stat{background: linear-gradient(180deg, rgba(255,255,255,0.03), transparent); padding:12px; border-radius:12px; text-align:center; min-width:90px; transition: transform 0.3s;}
+    .stat:hover{transform: translateY(-3px);}
+    .projects{display:grid; grid-template-columns:repeat(3,1fr); gap:16px;}
+    .project{padding:16px; border-radius:14px; background: linear-gradient(180deg, rgba(255,255,255,0.03), transparent); min-height:120px; display:flex; flex-direction:column; justify-content:space-between; transition: transform 0.3s, box-shadow 0.3s;}
+    .project:hover{transform: translateY(-4px); box-shadow:0 12px 36px rgba(0,0,0,0.5);}
+    .contact{display:grid; grid-template-columns:1fr 340px; gap:24px;}
+    form label{display:block; font-weight:700; margin-bottom:6px;}
+    input, textarea{width:100%; padding:14px; border-radius:12px; border:1px solid rgba(255,255,255,0.05); background:transparent; color:#e6eef8; transition: border-color 0.3s, transform 0.2s;}
+    input:focus, textarea:focus{border-color:var(--accent); outline:none; transform: scale(1.02);}
+    button{background:var(--accent); border:none; padding:14px 18px; border-radius:12px; font-weight:800; cursor:pointer; transition: all 0.3s;}
+    button:hover{background:var(--accent-hover); transform: scale(1.05);}
+    footer{text-align:center; color:var(--muted); margin-top:40px; font-size:14px;}
 
-    * {box-sizing:border-box;}
-    html, body {height:100%; margin:0; padding:48px 20px; display:flex; justify-content:center; background: linear-gradient(180deg, #080a12 0%, var(--bg) 100%); color:#e6eef8; line-height:1.5;}
-    body { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;}
+    @media(max-width:900px){.hero{grid-template-columns:1fr;} .projects{grid-template-columns:repeat(2,1fr);} .contact{grid-template-columns:1fr;}}
+    @media(max-width:520px){nav{display:none;} body{padding:22px;} .projects{grid-template-columns:1fr;}}
 
-    .wrap {width:100%; max-width:var(--container);}
-
-    header {display:flex; align-items:center; justify-content:space-between; margin-bottom:36px; backdrop-filter: blur(10px);}
-    .brand {display:flex; gap:12px; align-items:center;}
-    .logo {width:50px; height:50px; border-radius:14px; background: linear-gradient(135deg, var(--accent), #0ea5e9); display:flex; align-items:center; justify-content:center; font-weight:700; color:#fff; box-shadow:0 6px 20px rgba(0,0,0,0.7); font-size:20px; transition: transform 0.3s;}
-    .logo:hover {transform: rotate(10deg) scale(1.1);}
-    nav {display:flex; gap:20px; align-items:center;}
-    nav a {color:var(--muted); text-decoration:none; font-weight:600; transition: color 0.3s;}
-    nav a:hover {color:var(--accent);}
-    .cta {background: linear-gradient(90deg,var(--accent),#0ea5e9); color:#fff; padding:10px 16px; border-radius:14px; font-weight:700; transition: all 0.3s;}
-    .cta:hover {background: var(--accent-hover); transform: scale(1.05);}
-
-    .hero {display:grid; grid-template-columns:1fr 400px; gap:32px; align-items:center; margin-bottom:36px;}
-    .card {background:var(--card); padding:28px; border-radius:var(--radius); box-shadow: 0 12px 36px rgba(0,0,0,0.5); border:1px solid rgba(255,255,255,0.02); backdrop-filter: blur(8px); transition: transform 0.3s;}
-    .card:hover {transform: translateY(-5px);}
-    .hero-left h1 {font-size:36px; margin:0 0 10px; line-height:1.2;}
-    .hero-left p {margin:0 0 20px; color:var(--muted);}
-    .skills {display:flex; flex-wrap:wrap; gap:10px;}
-    .chip {background: var(--glass); padding:8px 12px; border-radius:999px; color:var(--muted); font-weight:600; transition: all 0.3s;}
-    .chip:hover {background: var(--accent-hover); color:#fff;}
-
-    .profile {display:flex; flex-direction:column; gap:16px; align-items:center;}
-    .avatar {width:180px; height:180px; border-radius:20px; overflow:hidden; background:var(--card); display:flex; align-items:center; justify-content:center; border:2px solid var(--accent);}
-    .avatar img {width:100%; height:100%; object-fit:cover; display:block; transition: transform 0.4s;}
-    .avatar:hover img {transform: scale(1.1);}
-    .stats {display:flex; gap:16px;}
-    .stat {background: linear-gradient(180deg, rgba(255,255,255,0.03), transparent); padding:12px; border-radius:12px; text-align:center; min-width:90px; transition: transform 0.3s;}
-    .stat:hover {transform: translateY(-3px);}
-    .projects {display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-top:20px;}
-    .project {padding:16px; border-radius:14px; background: linear-gradient(180deg, rgba(255,255,255,0.03), transparent); min-height:120px; display:flex; flex-direction:column; justify-content:space-between; transition: transform 0.3s, box-shadow 0.3s;}
-    .project:hover {transform: translateY(-4px); box-shadow:0 12px 36px rgba(0,0,0,0.5);}
-    .project h3 {margin:0; font-size:17px;}
-    .project p {margin:6px 0 0; color:var(--muted); font-size:13px;}
-
-    .contact {display:grid; grid-template-columns:1fr 340px; gap:24px;}
-    form label {display:block; font-weight:700; margin-bottom:6px;}
-    input, textarea {width:100%; padding:14px; border-radius:12px; border:1px solid rgba(255,255,255,0.05); background:transparent; color:#e6eef8; transition: border-color 0.3s, transform 0.2s;}
-    input:focus, textarea:focus {border-color:var(--accent); outline:none; transform: scale(1.02);}
-    button {background:var(--accent); border:none; padding:14px 18px; border-radius:12px; font-weight:800; cursor:pointer; transition: all 0.3s;}
-    button:hover {background:var(--accent-hover); transform: scale(1.05);}
-
-    footer {margin-top:40px; color:var(--muted); text-align:center; font-size:14px;}
-
-    /* responsive */
-    @media (max-width:900px){
-      .hero {grid-template-columns:1fr;}
-      .projects {grid-template-columns:repeat(2,1fr);}
-      .contact {grid-template-columns:1fr;}
-    }
-    @media (max-width:520px){
-      nav {display:none;}
-      body {padding:22px;}
-      .projects {grid-template-columns:1fr;}
-    }
-
-    /* subtle floating animation for avatar */
-    @keyframes float {
-      0%,100% {transform: translateY(0);}
-      50% {transform: translateY(-8px);}
-    }
-    .avatar {animation: float 4s ease-in-out infinite;}
+    @keyframes float{0%,100%{transform: translateY(0);}50%{transform: translateY(-8px);}}
   </style>
 </head>
 <body>
   <div class="wrap">
+    <!-- Header -->
     <header>
       <div class="brand">
         <div class="logo">YS</div>
@@ -105,11 +87,12 @@
       </nav>
     </header>
 
-    <section class="hero">
-      <div class="card hero-left">
+    <!-- Hero -->
+    <section class="hero card">
+      <div>
         <h1>Hi, I’m <span style="color:var(--accent)">BIRUK ESAYAS</span>.</h1>
         <p>I build polished web experiences and modern UI. I help teams ship faster and make interfaces that scale.</p>
-        <div class="skills" aria-hidden>
+        <div class="skills">
           <div class="chip">HTML</div>
           <div class="chip">CSS</div>
           <div class="chip">JavaScript</div>
@@ -117,43 +100,101 @@
           <div class="chip">Python</div>
           <div class="chip">Graphics Designer</div>
         </div>
-
-        <div style="margin-top:18px;display:flex;gap:12px">
-          <a href="#projects" class="cta" style="text-decoration:none;">See projects</a>
-          <a href="mailto:birukesayas91@gmail.com" style="padding:10px 14px;border-radius:12px;background:transparent;border:1px solid rgba(255,255,255,0.05);text-decoration:none;color:var(--muted);font-weight:700">Email me</a>
+        <div style="margin-top:18px; display:flex; gap:12px;">
+          <a href="#projects" class="cta">See projects</a>
+          <a href="mailto:birukesayas91@gmail.com" style="padding:10px 14px;border-radius:12px;background:transparent;border:1px solid rgba(255,255,255,0.05);color:var(--muted);text-decoration:none;font-weight:700">Email me</a>
         </div>
       </div>
-
-      <aside class="card profile">
+      <aside class="profile">
         <div class="avatar">
-          <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=800&auto=format&fit=crop&ixlib=rb-4.0.3&s=placeholder" alt="Your photo" />
+          <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=800&auto=format&fit=crop&ixlib=rb-4.0.3&s=placeholder" alt="Your photo"/>
         </div>
         <div style="text-align:center">
           <div style="font-weight:800">BIRUK ESAYAS</div>
-          <div style="color:var(--muted);font-size:13px">Full Stack, AI, Graphics Designer & Engineer</div>
+          <div style="color:var(--muted); font-size:13px">Full Stack, AI, Graphics Designer & Engineer</div>
         </div>
-
         <div class="stats">
-          <div class="stat">
-            <div style="font-weight:800">8+</div>
-            <div style="font-size:12px;color:var(--muted)">Years</div>
-          </div>
-          <div class="stat">
-            <div style="font-weight:800">24</div>
-            <div style="font-size:12px;color:var(--muted)">Projects</div>
-          </div>
-        </div>
-
-        <div style="width:100%">
-          <div style="font-weight:700;margin-bottom:8px">Recent work</div>
-          <div class="projects" aria-hidden>
-            <div class="project"><div><h3>Project Alpha</h3><p>Interactive design system.</p></div><div style="text-align:right;font-size:12px;color:var(--muted)">React</div></div>
-            <div class="project"><div><h3>Landing One</h3><p>Marketing site with animation.</p></div><div style="text-align:right;font-size:12px;color:var(--muted)">HTML/CSS</div></div>
-            <div class="project"><div><h3>Data Dash</h3><p>Dashboard & charts.</p></div><div style="text-align:right;font-size:12px;color:var(--muted)">Python</div></div>
-          </div>
+          <div class="stat"><div style="font-weight:800">8+</div><div style="font-size:12px;color:var(--muted)">Years</div></div>
+          <div class="stat"><div style="font-weight:800">24</div><div style="font-size:12px;color:var(--muted)">Projects</div></div>
         </div>
       </aside>
     </section>
+
+    <!-- About -->
+    <section id="about" class="card">
+      <h2>About Me</h2>
+      <p style="color:var(--muted)">I’m a product-minded engineer passionate about performance, accessibility, and delightful interactions. I collaborate with teams to deliver polished, maintainable frontends and beautiful designs.</p>
+      <ul style="color:var(--muted)">
+        <li>Design systems & pattern libraries</li>
+        <li>Performance optimization & accessibility audits</li>
+        <li>Mentoring & code reviews</li>
+      </ul>
+    </section>
+
+    <!-- Projects -->
+    <section id="projects" class="card">
+      <h2>Projects</h2>
+      <div class="projects">
+        <div class="project"><h3>Project Alpha</h3><p>Interactive design system.</p><div style="font-size:12px;color:var(--muted)">React</div></div>
+        <div class="project"><h3>Landing One</h3><p>Marketing site with animations.</p><div style="font-size:12px;color:var(--muted)">HTML/CSS</div></div>
+        <div class="project"><h3>Data Dash</h3><p>Dashboard & charts.</p><div style="font-size:12px;color:var(--muted)">Python</div></div>
+        <div class="project"><h3>Project Omega</h3><p>Responsive SaaS marketing site.</p><div style="font-size:12px;color:var(--muted)">Next.js</div></div>
+        <div class="project"><h3>Open Source UI Kit</h3><p>Accessible component library.</p><div style="font-size:12px;color:var(--muted)">React</div></div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="card">
+      <h2>Contact</h2>
+      <div class="contact">
+        <form onsubmit="handleForm(event)">
+          <label for="name">Name</label>
+          <input id="name" name="name" placeholder="Your name" required/>
+          <label for="email">Email</label>
+          <input id="email" name="email" type="email" placeholder="you@example.com" required/>
+          <label for="message">Message</label>
+          <textarea id="message" name="message" rows="6" placeholder="Tell me about your project" required></textarea>
+          <div style="margin-top:10px"><button type="submit">Send message</button></div>
+          <div id="notice" style="margin-top:8px;color:var(--muted);font-size:13px"></div>
+        </form>
+        <aside style="padding-left:12px;border-left:1px solid rgba(255,255,255,0.05);">
+          <h3>Quick Links</h3>
+          <p style="color:var(--muted)">Email: <a href="mailto:birukesayas91@gmail.com">birukesayas91@gmail.com</a></p>
+          <p style="color:var(--muted)">Resume: <a href="#">Download</a></p>
+          <p style="color:var(--muted)">Location: Remote / Addis Ababa</p>
+        </aside>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="card">
+      Built with ❤️ — <span id="year"></span>
+    </footer>
   </div>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    function handleForm(e){
+      e.preventDefault();
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const msg = document.getElementById('message').value.trim();
+      const notice = document.getElementById('notice');
+      notice.textContent = 'Preparing message...';
+      const subject = encodeURIComponent('Website contact from ' + name);
+      const body = encodeURIComponent(msg + '\n\n— ' + name + ' (' + email + ')');
+      // Uncomment for mailto
+      // window.location.href = `mailto:birukesayas91@gmail.com?subject=${subject}&body=${body}`;
+      setTimeout(()=>{notice.textContent = 'Message ready — replace with API call or enable mailto.'},700);
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      a.addEventListener('click', (e)=>{
+        const tgt = a.getAttribute('href');
+        if(tgt.length>1){ e.preventDefault(); document.querySelector(tgt).scrollIntoView({behavior:'smooth',block:'start'});}
+      });
+    });
+  </script>
 </body>
 </html>
